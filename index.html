@@ -8,17 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Manrope:wght@300;500;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- IDENTIDADE NUDE LUXURY (COM MAIS CONTRASTE) --- */
+        /* --- IDENTIDADE NUDE LUXURY --- */
         :root {
             --bg-body: #E8DAD2; 
             --bg-card: #C5B4A5; 
             --text-main: #FFFFFF; 
-            --text-dark: #4A3228; /* Marrom mais escuro para contraste */
+            --text-dark: #4A3228; /* Marrom Escuro */
+            --text-light: #F9F9F9; /* Claro para o nome Eduarda */
             --accent: #FFFFFF; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
         
+        html { scroll-behavior: smooth; } /* Rolagem suave */
+
         body { 
             background-color: var(--bg-body); 
             color: var(--text-dark); 
@@ -26,7 +29,7 @@
             overflow-x: hidden;
         }
 
-        /* --- HERO: AGORA ALINHADO À ESQUERDA (PADRÃO ELITE) --- */
+        /* --- HERO --- */
         .hero {
             position: relative;
             width: 100%;
@@ -34,6 +37,7 @@
             height: 100dvh;
             overflow: hidden;
             display: flex;
+            align-items: flex-end; /* Alinha tudo embaixo para a foto aparecer */
             align-items: center; /* Centraliza verticalmente */
         }
 
@@ -45,46 +49,47 @@
             z-index: 1;
         }
 
-        /* Degradê Lateral (Para o texto na esquerda ler bem) */
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            /* Do Nude Sólido (Esq) para Transparente (Dir) */
-            background: linear-gradient(90deg, rgba(232, 218, 210, 0.95) 20%, rgba(232, 218, 210, 0.6) 60%, transparent 100%);
+            /* Degrade da esquerda para direita para o texto ler bem */
+            background: linear-gradient(90deg, rgba(232, 218, 210, 0.95) 25%, rgba(232, 218, 210, 0.5) 65%, transparent 100%);
             z-index: 2;
         }
 
         .hero-content {
             position: relative; z-index: 10;
-            padding-left: 25px; /* Alinhado a esquerda */
-            width: 70%; /* Ocupa 70% da tela */
+            padding-left: 20px;
+            width: 75%; /* Mais largo */
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Força alinhamento a esquerda */
+            align-items: flex-start;
         }
 
-        /* TÍTULO COM "BRILHO" (SOMBRA) */
+        /* TÍTULO COM DUAS CORES */
         .hero-title {
-            font-family: 'Playfair Display', serif; /* Fonte Chique */
+            font-family: 'Playfair Display', serif;
             font-size: 4rem; 
-            line-height: 0.9;
+            line-height: 0.85;
             font-weight: 800;
-            color: var(--text-dark); 
             margin-bottom: 15px;
-            /* Sombra branca suave para destacar do fundo */
-            text-shadow: 2px 2px 0px rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
         
+        .name-light { color: #FFF; text-shadow: 0 0 10px rgba(0,0,0,0.2); }
+        .name-dark { color: var(--text-dark); text-shadow: 2px 2px 0px rgba(255,255,255,0.4); }
+
         .hero-subtitle {
-            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 4px;
-            color: #8D6E63; font-weight: 700; display: block; margin-bottom: 10px;
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px;
+            color: #8D6E63; font-weight: 700; display: block; margin-bottom: 15px;
         }
 
-        /* BADGES ALINHADAS */
+        /* BADGES */
         .badges-container {
             display: flex;
-            flex-direction: column; /* Uma embaixo da outra */
-            gap: 12px;
-            margin-top: 10px;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
         }
 
         .badge {
@@ -97,8 +102,14 @@
             font-weight: 700;
             backdrop-filter: blur(5px);
             display: flex; align-items: center; gap: 8px;
+            cursor: default;
         }
-        .badge span { font-size: 1rem; } /* Ícone */
+        
+        /* Badge Clicável */
+        .badge-link { cursor: pointer; transition: 0.2s; background: rgba(255, 255, 255, 0.9); border-color: #8D6E63; }
+        .badge-link:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        .badge span { font-size: 1rem; }
 
         /* --- CARROSSEL --- */
         .vitrine-section { padding: 40px 0; background: var(--bg-body); overflow: hidden; }
@@ -116,30 +127,85 @@
         .highlight { font-weight: 800; color: #8D6E63; }
         .disclaimer { font-size: 0.7rem; color: #795548; font-style: italic; border-top: 1px solid #D7CCC8; padding-top: 10px; display: inline-block;}
 
-        /* --- SERVIÇOS (COMPACTOS) --- */
+        /* --- SERVIÇOS (LAYOUT OTIMIZADO) --- */
         .services-section { padding: 0 15px 40px; }
-        .service-card { background: var(--bg-card); border-radius: 15px; overflow: hidden; margin-bottom: 15px; color: var(--text-main); box-shadow: 0 5px 15px rgba(93, 64, 55, 0.1); position: relative; }
-        .card-content { padding: 15px; padding-right: 110px; min-height: 110px; display: flex; flex-direction: column; justify-content: center; }
-        .circle-overlay-img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.4); object-fit: cover; position: absolute; top: 50%; right: 15px; transform: translateY(-50%); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .card-title { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 5px; line-height: 1.1; }
-        .card-desc { font-size: 0.75rem; line-height: 1.3; opacity: 0.9; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-        .price-tag { font-size: 1.4rem; font-weight: 800; display: block; margin-top: 5px; }
-        .price-small { font-size: 0.7rem; font-weight: 400; opacity: 0.8; }
-        .btn-mini-schedule { background: #FFF; color: var(--text-dark); padding: 8px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; border: none; cursor: pointer; width: max-content; margin-top: 8px; }
+        
+        .service-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden; 
+            margin-bottom: 12px; /* Mais compacto */
+            color: var(--text-main);
+            box-shadow: 0 5px 15px rgba(93, 64, 55, 0.1);
+            position: relative;
+            min-height: 130px; /* Altura mínima para caber a foto grande */
+        }
+
+        .card-content { 
+            padding: 15px; 
+            padding-right: 130px; /* Espaço maior na direita para a foto grande */
+            display: flex; flex-direction: column; justify-content: center;
+        }
+
+        /* IMAGEM MAIOR E FLUTUANTE */
+        .circle-overlay-img {
+            width: 115px; height: 115px; /* Bem grande */
+            border-radius: 50%; 
+            border: 3px solid rgba(255,255,255,0.6);
+            object-fit: cover; 
+            position: absolute; 
+            top: 50%; right: -10px; /* Levemente para fora */
+            transform: translateY(-50%);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+
+        .card-title { 
+            font-family: 'Manrope', sans-serif; font-weight: 800; 
+            font-size: 1.1rem; margin-bottom: 4px; line-height: 1.1; 
+        }
+        
+        /* Descrição de volta! */
+        .card-desc { 
+            font-size: 0.75rem; line-height: 1.3; opacity: 0.95; margin-bottom: 8px; 
+            display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+            font-weight: 400;
+        }
+        
+        .price-tag { font-size: 1.5rem; font-weight: 800; display: block; margin-top: 5px; }
+        .price-small { font-size: 0.7rem; font-weight: 500; opacity: 0.9; }
+
+        .btn-mini-schedule {
+            background: #FFF; color: var(--text-dark); 
+            padding: 8px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: 800;
+            text-transform: uppercase; border: none; cursor: pointer;
+            width: max-content; margin-top: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
 
         /* SELETOR DE DIAS */
-        .days-selector { background: rgba(255,255,255,0.15); border: 1px dashed rgba(255,255,255,0.4); padding: 10px; margin-top: 10px; border-radius: 8px; width: fit-content; }
-        .days-label { font-size: 0.65rem; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; }
-        select { padding: 5px; background: rgba(255,255,255,0.9); border: none; border-radius: 4px; color: #5D4037; font-family: 'Manrope'; font-size: 0.8rem; font-weight: bold; }
+        .days-selector {
+            background: rgba(255,255,255,0.2); border: 1px dashed rgba(255,255,255,0.5);
+            padding: 8px; margin-top: 8px; border-radius: 6px; width: fit-content;
+        }
+        .days-label { font-size: 0.65rem; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 1; font-weight: 700;}
+        select {
+            padding: 5px; background: rgba(255,255,255,0.9);
+            border: none; border-radius: 4px; color: #5D4037; font-family: 'Manrope'; font-size: 0.8rem; font-weight: bold;
+        }
 
-        /* --- ANTES E DEPOIS --- */
+        /* --- ANTES E DEPOIS (SEPARADO) --- */
         .transformation-section { background: #D7CCC8; padding: 40px 20px; text-align: center; }
-        .transform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .t-circle { width: 100%; aspect-ratio: 1/1; border-radius: 50%; object-fit: cover; border: 3px solid #FFF; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .t-label { font-family: 'Playfair Display', serif; margin-top: 5px; display: block; color: var(--text-dark); font-weight: bold; font-style: italic;}
-        .t-sub { font-size: 0.7rem; color: #5D4037; font-weight: 600; text-transform: uppercase; margin-top: 5px;}
+        .transform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        
+        .sub-header { 
+            font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text-dark); 
+            margin: 0 0 15px 0; border-bottom: 1px solid rgba(255,255,255,0.5); display: inline-block; padding-bottom: 5px;
+        }
 
-        /* --- LOCALIZAÇÃO (NOVO) --- */
+        .t-circle { width: 100%; aspect-ratio: 1/1; border-radius: 50%; object-fit: cover; border: 3px solid #FFF; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .t-sub { font-size: 0.75rem; color: #5D4037; font-weight: 700; text-transform: uppercase; margin-top: 8px;}
+
+        /* --- LOCALIZAÇÃO --- */
         .map-section { padding: 40px 20px 0; text-align: center; }
         .map-frame { width: 100%; height: 250px; border-radius: 15px; border: 2px solid #FFF; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
 
@@ -162,21 +228,31 @@
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes appear { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
+        @media (min-width: 768px) {
+            .hero-content { max-width: 50%; padding-left: 10%; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- HERO CORRIGIDO (TEXTO ESQUERDA + BRILHO) -->
+    <!-- HERO -->
     <header class="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         
         <div class="hero-content">
             <span class="hero-subtitle">Nail Designer</span>
-            <h1 class="hero-title">Eduarda<br>Paes</h1>
+            <h1 class="hero-title">
+                <span class="name-light">Eduarda</span><br>
+                <span class="name-dark">Paes</span>
+            </h1>
             
             <div class="badges-container">
-                <div class="badge"><span>📍</span> LEHE Clinic</div>
+                <!-- Badge CLICÁVEL com scroll suave -->
+                <div class="badge badge-link" onclick="scrollToMap()">
+                    <span>📍</span> LEHE Clinic
+                </div>
+                
                 <div class="badge"><span>✨</span> Especialista Método BG</div>
                 <div class="badge"><span>📅</span> Agenda Aberta</div>
             </div>
@@ -211,7 +287,7 @@
         <span class="disclaimer">Todos os procedimentos incluem cutilagem tradicional, decoração e esmaltação em gel.</span>
     </section>
 
-    <!-- SERVIÇOS -->
+    <!-- SERVIÇOS (COM TEXTO ORIGINAL RESTAURADO E IMAGENS MAIORES) -->
     <section class="services-section">
         <div class="section-header">
             <h2>Serviços</h2>
@@ -219,20 +295,21 @@
 
         <!-- 1. FIBRA -->
         <div class="service-card">
-            <img src="fibra.jpg" class="circle-overlay-img">
             <div class="card-content">
-                <h3 class="card-title">Aplicação de Fibra</h3>
-                <p class="card-desc">Alongamento resistente e natural, moldado na unha.</p>
+                <h3 class="card-title">Aplicação de Fibra Personalizada</h3>
+                <p class="card-desc">
+                    O alongamento na fibra é basicamente um procedimento onde iremos "alongar" sua unha, a partir de fios de fibra de vidro fixadas na unha e moldados em cima da unha natural. Você escolhe tamanho, formato e pintura/decoração que desejar!
+                </p>
                 <span class="price-tag">R$ 200,00</span>
                 <button class="btn-mini-schedule" onclick="startSchedule('Aplicação Fibra', 200)">Agendar</button>
             </div>
+            <img src="fibra.jpg" class="circle-overlay-img">
         </div>
 
         <!-- 2. MANUTENÇÃO (COM DIAS) -->
         <div class="service-card">
-            <img src="manutencao_fibra.jpg" class="circle-overlay-img">
             <div class="card-content">
-                <h3 class="card-title">Manutenções</h3>
+                <h3 class="card-title">Manutenções + uma reposição</h3>
                 
                 <div class="days-selector">
                     <label class="days-label">ÚLTIMA MANUTENÇÃO?</label>
@@ -244,27 +321,28 @@
                 </div>
 
                 <span class="price-tag" id="priceFibra">R$ 100,00</span>
-                <span class="price-small">+ reposição R$ 15,00</span>
                 <button class="btn-mini-schedule" onclick="startSchedule('Manutenção Fibra', document.getElementById('priceFibra').innerText)">Agendar</button>
             </div>
+            <img src="manutencao_fibra.jpg" class="circle-overlay-img">
         </div>
 
         <!-- 3. MÉTODO BG -->
         <div class="service-card">
-            <img src="metodo_bg.jpg" class="circle-overlay-img">
             <div class="card-content">
-                <h3 class="card-title">Método BG</h3>
-                <p class="card-desc">Banho de gel para proteção e crescimento da unha natural.</p>
+                <h3 class="card-title">Aplicação Método BG</h3>
+                <p class="card-desc">
+                    O banho de gel é uma cobertura feita com gel em cima da unha natural, "criando" uma barreira fortalecedora que protege as suas unhas, favorecendo o crescimento delas desde o momento da aplicação.
+                </p>
                 <span class="price-tag">R$ 75,00</span>
                 <button class="btn-mini-schedule" onclick="startSchedule('Método BG', 75)">Agendar</button>
             </div>
+            <img src="metodo_bg.jpg" class="circle-overlay-img">
         </div>
 
         <!-- 4. RETORNO BG -->
         <div class="service-card">
-            <img src="retorno_bg.jpg" class="circle-overlay-img">
             <div class="card-content">
-                <h3 class="card-title">Retornos BG</h3>
+                <h3 class="card-title">Retornos</h3>
                 
                 <div class="days-selector">
                     <label class="days-label">ÚLTIMA MANUTENÇÃO?</label>
@@ -278,33 +356,36 @@
                 <span class="price-tag" id="priceBG">R$ 75,00</span>
                 <button class="btn-mini-schedule" onclick="startSchedule('Retorno BG', document.getElementById('priceBG').innerText)">Agendar</button>
             </div>
+            <img src="retorno_bg.jpg" class="circle-overlay-img">
         </div>
     </section>
 
-    <!-- ANTES E DEPOIS -->
+    <!-- ANTES E DEPOIS (AGORA SEPARADO POR TÍTULOS) -->
     <section class="transformation-section">
         <div class="section-header">
-            <h2>Transformações</h2>
-            <p>Método BG e Fibra</p>
+            <h2>Resultados Reais</h2>
         </div>
-
+        
+        <h3 class="sub-header">Alongamento na Fibra</h3>
         <div class="transform-grid">
             <div><img src="antes_fibra.jpg" class="t-circle"><p class="t-sub">Antes</p></div>
             <div><img src="depois_fibra.jpg" class="t-circle"><p class="t-sub">Depois</p></div>
         </div>
 
-        <div class="transform-grid" style="margin-top:20px;">
+        <h3 class="sub-header" style="margin-top:30px;">Método BG</h3>
+        <div class="transform-grid">
             <div><img src="antes_bg.jpg" class="t-circle"><p class="t-sub">Antes</p></div>
             <div><img src="depois_bg.jpg" class="t-circle"><p class="t-sub">Depois</p></div>
         </div>
     </section>
 
-    <!-- LOCALIZAÇÃO (MAPA NOVO) -->
-    <section class="map-section">
+    <!-- MAPA (NOVO) -->
+    <section id="map-section" class="map-section">
         <div class="section-header">
             <h2>Onde Estamos</h2>
             <p>LEHE Clinic</p>
         </div>
+        <!-- Iframe do Mapa -->
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3534.4474254915212!2d-48.68104282453492!3d-27.641625576220353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95273508b3298373%3A0xbc63cb09847d1733!2sLEHE%20clinic!5e0!3m2!1spt-BR!2sbr!4v1767015976910!5m2!1spt-BR!2sbr" 
         class="map-frame" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>
@@ -341,6 +422,12 @@
         const WHATSAPP = "5548999999999"; 
         let currentService = "";
         let currentPrice = "";
+
+        // Função de Scroll Suave para o Mapa
+        function scrollToMap() {
+            const mapSec = document.getElementById('map-section');
+            if(mapSec) mapSec.scrollIntoView({behavior: 'smooth'});
+        }
 
         function updatePrice(type) {
             if(type === 'fibra') {
